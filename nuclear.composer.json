@@ -1,0 +1,23 @@
+{
+    "name": "nuclear-cms",
+    "description": "NuclearCMS!",
+    "version": "1.0.0",
+    "homepage": "http://nuclearcms.com",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joel Ferreira",
+            "email": "joelviseu@gmail.com",
+            "homepage": "http://www.joelferreira.eu",
+            "role": "Developer"
+        }
+    ],
+    "publicSELF":true,
+    "corePATH":"nuclear.core",
+    "repository":"https://nuclear-source.github.io/packages/",
+    "packages": {
+        "vendor":  "nuclear.vendor.zip",
+        "system":  "nuclear.core.zip",
+        "default": "nuclear.default.zip"
+    }
+}
