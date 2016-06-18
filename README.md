@@ -9,7 +9,7 @@
 
 
 
->  use Windows command-line or SHELL commands [.git](https://git-scm.com/) or SSH commands [putty](http://www.putty.org/)
+>  use Windows command-line (cmd.exe) or SHELL commands [.git](https://git-scm.com/) or SSH commands [putty](http://www.putty.org/)
 
 __define PATH to php__
 
