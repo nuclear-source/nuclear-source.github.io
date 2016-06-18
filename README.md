@@ -1,4 +1,14 @@
 ## INSTALL nuclear-soure
+###Requires
+- Apache  HTTP-server
+- PHP > 5.3
+
+*easy install AMP (Apache, Mysql, PHP) software for windows or MAC-OS or LINUX;:*
+[xampp](https://www.apachefriends.org/pt_br/index.html)
+[wamp](http://www.wampserver.com/en/)
+
+
+
 >  use Windows command-line 
 
 __define PATH to php__
@@ -22,7 +32,7 @@ cd my-project
 __GET nuclear.composer.json__ *get->from->repository";*
 
 ```
-php -r "copy('https://nuclear-source.github.io/nuclear.composer.json','nuclear.composer.json');echo 'install...';"
+php -r "copy('https://nuclear-source.github.io/nuclear.composer.json','nuclear.composer.json');"
 ```
 __GET nuclear.cli__ *nuclear CLI-console commands";*
 
