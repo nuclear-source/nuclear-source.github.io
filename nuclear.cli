@@ -1,0 +1,145 @@
+<?php 
+if(php_sapi_name() !== 'cli'){die();}
+echo "
+------------------------------------------
+\033[32m #NuclearCMS V0.1
+\033[33m CLI-console\033[0m 
+ Do you want install nuclear.composer.json?
+ Type \033[32m 'yes'\033[0m  Or press ENTER to abort
+ :";
+ 	///START INSTALL
+	$handle = fopen ("php://stdin","r");
+	$line = fgets($handle);
+	if(trim($line) != 'yes'){ echo "ABORTING!\n"; die();}
+	fclose($handle);
+
+if(!is_file('nuclear.composer.json'))
+	echo 'INSTALL:ERROR - create nuclear.composer.json';
+
+
+
+echo "
+------------------------------------------
+\033[33m INSTALL OPTIONS V0.1\033[0m
+Type \033[32m '-f': \033[0m  -force delete all packages before install 
+Type \033[32m '-u': \033[0m  -update overwrite package if  exist
+or press ENTER to ignore if exist package
+Install: 
+      ";
+$handle = fopen ("php://stdin","r");
+$line = fgets($handle);
+if(trim($line) === '-f')
+	$force =true; 
+else if(trim($line) === '-u')
+	$force=false;
+else{
+	$force=false;
+	$ignore=true;
+}
+fclose($handle);
+echo '.';
+
+function rmdir_recursive($dir) {
+    foreach(scandir($dir) as $file) {
+        if ('.' === $file || '..' === $file) continue;
+        if (is_dir("$dir/$file")) rmdir_recursive("$dir/$file");
+        else unlink("$dir/$file");
+    }
+    rmdir($dir);
+}
+
+
+$nuclear  = json_decode(file_get_contents('nuclear.composer.json'));
+$repo     = $nuclear->repository;
+$packages = $nuclear->packages;
+$pathcore = $nuclear->corePATH.'/';
+if(!is_dir($pathcore)){
+	mkdir($nuclear->corePATH, 0755, true);
+}
+$count=0;
+foreach($packages as $key=>$package)
+	{
+		$count+=1;
+		echo ".\n";
+		if(isset($ignore) && is_dir($pathcore.'_'.$key))
+		{
+			echo "INSTALL ".$key."...........IGNORE (exist)\n";
+		}
+		else{
+			$current = file_get_contents($repo.$package);
+			
+			$filename = 'install0'.$count.'.zip';
+			file_put_contents($filename, $current);
+			if($force && is_dir($pathcore.'_'.$key))
+				{
+					echo "\n\033[33m  #FORCE-> delete old vendor-folder.....................";
+					rmdir_recursive($pathcore.'_'.$key.'/');
+					echo "\033[32mAPAGADO\033[0m\n";
+				}
+			echo "INSTALL ".$key."...........";
+			
+			$zip = new ZipArchive;
+			
+			if (true === $zip->open($filename)) {
+				
+			
+				
+				if($key=='system')
+					$zip->extractTo($pathcore);
+				else	
+					$zip->extractTo($pathcore.'_'.$key.'/');
+				$zip->close();
+				unlink($filename);
+				echo "\033[32m OK \033[0m \n";
+			} 
+			else
+			    echo "\033[31 ERROR \033[0m \n";
+		}
+	}
+	
+$indexcontent = '<?php
+define("INDEXPATH", dirname(__FILE__));';
+
+
+
+	
+if($nuclear->publicSELF && !is_dir('public_assets'))
+{
+	$indexcontent .= '$path_to_nuclear = "'.$nuclear->corePATH.'/";'; 
+	echo "SELF mode on\n";
+	mkdir('public_assets', 0755, true);
+	mkdir('public_assets/css', 0755, true);
+	mkdir('public_assets/js', 0755, true);
+	mkdir('public_assets/img', 0755, true);
+	mkdir('public_assets/libs', 0755, true);
+	echo "Create FOLDER: public_assets\n";
+	echo "\nPATHtonuclear: ".$nuclear->corePATH."\n";
+}	
+else if(!is_dir('public_html'))
+{
+	$indexcontent .= '$path_to_nuclear = "../'.$nuclear->corePATH.'/";'; 
+	echo "SELF mode off\n";
+	echo "Create FOLDER: public_html\n";
+        mkdir('public_html',0777, true);
+	mkdir('public_html/css', 0755, true);
+	mkdir('public_html/js', 0755, true);
+	mkdir('public_html/img', 0755, true);
+	mkdir('public_html/libs', 0755, true);
+	echo "\nPATHtonuclear: ../".$nuclear->corePATH."\n";
+	file_put_contents('index.html', file_get_contents("https://nuclear-source.github.io/files/public.ignore.html"));
+
+}
+
+$indexcontent .='
+if(is_file($path_to_nuclear."nuclear.boot.php"))
+	require_once $path_to_nuclear."nuclear.boot.php";
+else 
+	echo "<pre><b>ERROR NUCLEAR.CORE</b><br/> *please run install</pre><b>location:</b><pre> EX: ../nuclear.install.php</br/><b>or CLI-console:</b><pre> $ php nuclear.cli.install</pre><br/>";';
+
+if($nuclear->publicSELF)
+	file_put_contents('index.php', $indexcontent);
+else 
+	file_put_contents('public_html/index.php', $indexcontent);
+
+echo "\n\n\033[32m CLI-INSTALL complete success\n";		
+exit();
