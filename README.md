@@ -10,19 +10,16 @@
 
 >  use Windows command-line (cmd.exe) or SHELL commands [.git](https://git-scm.com/) or SSH commands [putty](http://www.putty.org/)
 
+*__DEFINE PATH to php.exe AND create project-FOLDER__*
 ```
-/**
-DEFINE PATH to php.exe AND create project-FOLDER
-**/
-
 PATH=%PATH%;c:\xampp\php\ 
 mkdir my-project
 cd my-project 
+```
 
-/**
-GET DEPENDENCIES FORM nuclear-source.github.io AND run nuclear.cli
-**/
+*__GET DEPENDENCIES FORM nuclear-source.github.io AND run nuclear.cli__*
 
+```
 php -r "copy('https://nuclear-source.github.io/nuclear.composer.json','nuclear.composer.json');" 
 php -r "copy('https://nuclear-source.github.io/nuclear.cli','nuclear.cli');echo 'done...';" 
 php nuclear.cli
