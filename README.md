@@ -9,7 +9,7 @@
 
 
 
->  use Windows command-line 
+>  use Windows command-line or SHELL commands 
 
 __define PATH to php__
 
