@@ -11,23 +11,19 @@
 >  use Windows command-line (cmd.exe) or SHELL commands [.git](https://git-scm.com/) or SSH commands [putty](http://www.putty.org/)
 
 ```
-/*define PATH to php*/
 
-PATH=%PATH%;c:\xampp\php\
+PATH=%PATH%;c:\xampp\php\ ///define PATH to php.exe file
 
-//create directory
+mkdir my-project //create directory
 
-mkdir my-project
+cd my-project //enter project-directory
 
-//enter project-directory
 
-cd my-project
+//GET nuclear.composer.json
 
-//GET nuclear.composer.json *get->from->repository";*
+php -r "copy('https://nuclear-source.github.io/nuclear.composer.json','nuclear.composer.json');" 
 
-php -r "copy('https://nuclear-source.github.io/nuclear.composer.json','nuclear.composer.json');"
-
-//GET nuclear.cli *nuclear CLI-console commands";*
+//GET nuclear.cli 
 
 php -r "copy('https://nuclear-source.github.io/nuclear.cli','nuclear.cli');echo 'done...';" 
 
