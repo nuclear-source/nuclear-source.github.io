@@ -8,11 +8,10 @@
 [wamp](http://www.wampserver.com/en/)
 
 
-
 >  use Windows command-line (cmd.exe) or SHELL commands [.git](https://git-scm.com/) or SSH commands [putty](http://www.putty.org/)
 
 ```
-//define PATH to php
+/*define PATH to php*/
 
 PATH=%PATH%;c:\xampp\php\
 
@@ -64,6 +63,9 @@ php nuclear.cli
     }
 }
 ```
+
+###MORE INFORMATION
+[www.nuclearCMS.com](http://www.nuclearcms.com)
 
 ###Questions
 joelviseu@gmail.com
