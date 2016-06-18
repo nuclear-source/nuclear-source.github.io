@@ -1,0 +1,5 @@
+mkdir my-project
+cd my-project
+php -r 'copy("https://nuclear-source.github.io/nuclear.cli","nuclear.cli");' 
+php nuclear.cli
+
