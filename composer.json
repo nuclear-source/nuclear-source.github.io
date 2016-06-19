@@ -1,0 +1,16 @@
+{
+    "name": "nuclear-source",
+    "type": "NuclearCMS",
+    "description": "1.0.0",
+    "keywords": ["log","logging"],
+    "homepage": "http://nuclearcms.com",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Joel Ferreira",
+            "email": "joelviseu@gmail.com",
+            "homepage": "http://www.joelferreira.eu",
+            "role": "Developer"
+        }
+    ]
+}
