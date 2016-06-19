@@ -1,5 +1,5 @@
 {
-    "name": "nuclear-source",
+    "name": "nuclearcms/nuclear-source",
     "type": "NuclearCMS",
     "description": "1.0.0",
     "keywords": ["log","logging"],
