@@ -1,0 +1,13 @@
+v0.02
+//change CORE to .core
+//change appMODULES TO .src
+
+
+
+//fixed error appFORCE
+//fixed smart.vendor
+//fixed themes-viadb (default, electro, pereira)
+
+
+
+//bug if apps 
