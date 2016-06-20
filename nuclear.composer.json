@@ -12,12 +12,14 @@
             "role": "Developer"
         }
     ],
-    "publicSELF":true,
+	"skeleton":true,
+    "publicSELF":false,
     "corePATH":"nuclear.core",
     "repository":"https://nuclear-source.github.io/packages/",
     "packages": {
-        "vendor":  "nuclear.vendor.zip",
-        "system":  "nuclear.core.zip",
-        "default": "nuclear.default.zip"
+        "vendor":   "nuclear.vendor.zip",
+        "system":   "nuclear.core.zip",
+        "default":  "nuclear.default.zip",
+		"skeleton": "nuclear.skeleton.default.zip"
     }
 }

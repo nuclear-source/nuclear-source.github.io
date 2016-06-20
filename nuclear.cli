@@ -86,6 +86,8 @@ foreach($packages as $key=>$package)
 				
 				if($key=='system')
 					$zip->extractTo($pathcore);
+				if($key=='skeleton' && $nuclear->skeleton)  
+					$zip->extractTo('.');	
 				else	
 					$zip->extractTo($pathcore.'_'.$key.'/');
 				$zip->close();
